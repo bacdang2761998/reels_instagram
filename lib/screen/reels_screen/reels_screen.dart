@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reels_instagram/data/data.dart';
 import 'package:reels_instagram/screen/reels_screen/reel_detal.dart';
 import 'package:reels_instagram/screen/reels_screen/reels_side_acction_bar.dart';
+import 'package:reels_instagram/screen/reels_screen/video_side_acction.dart';
 
 class ReelsScrenn extends StatefulWidget {
   const ReelsScrenn({Key? key}) : super(key: key);
@@ -39,13 +40,14 @@ class _ReelsScrennState extends State<ReelsScrenn> {
           itemBuilder: (context, index) {
             return Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(reels[index].imageUrl))),
+                border: Border.all(color: Colors.black),
+              ),
               child: Center(
                   child: Stack(
                 children: [
+                  VideoSideAcction(
+                    reel: reels[index],
+                  ),
                   Container(
                     decoration: BoxDecoration(
                         gradient: LinearGradient(colors: [

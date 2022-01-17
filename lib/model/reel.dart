@@ -1,5 +1,5 @@
 class Reel {
-  final String imageUrl;
+  final String videoUrl;
   final String audioTitle;
   final String caption;
   final String totalLikes;
@@ -8,7 +8,7 @@ class Reel {
   final bool isTagged;
 
   Reel(
-    this.imageUrl,
+    this.videoUrl,
     this.audioTitle,
     this.caption,
     this.totalLikes,
