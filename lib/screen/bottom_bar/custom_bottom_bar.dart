@@ -37,8 +37,8 @@ class CustomBottomBar extends StatelessWidget {
                   onIconTap(2);
                 },
                 icon: Icon(selectPageIndex == 2
-                    ? Icons.smart_display
-                    : Icons.smart_display_outlined)),
+                    ? Icons.settings_outlined
+                    : Icons.settings_display_outlined)),
             IconButton(
                 color: selectPageIndex == 2 ? Colors.white : Colors.black,
                 onPressed: () {

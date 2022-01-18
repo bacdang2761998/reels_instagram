@@ -16,8 +16,6 @@ class CustomHomeAppBar extends StatelessWidget {
       ),
       actions: [
         IconButton(onPressed: () {}, icon: Icon(Icons.add_box_outlined)),
-        // IconButton(
-        //     onPressed: () {}, icon: Icon(Icons.favorite_border_outlined)),
         IconButton(onPressed: () {}, icon: Icon(Icons.send_outlined)),
       ],
     );

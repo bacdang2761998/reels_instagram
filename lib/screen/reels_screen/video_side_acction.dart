@@ -40,26 +40,27 @@ class _VideoSideAcctionState extends State<VideoSideAcction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _chewieController != null &&
+      body: SafeArea(
+        child: _chewieController != null &&
               _chewieController!.videoPlayerController.value.isInitialized
-          ? Chewie(controller: _chewieController!)
+          ? Chewie(controller: _chewieController!,)
           : Center(
-              child: Column(
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Center(
-                    child: Text("Loading",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 24,
-                        )),
-                  ),
-                ],
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(
+                  height: 10,
+                ),
+                Text("Loading",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 24,
+                    )),
+              ],
             ),
+          ),)
+      
     );
   }
 }
