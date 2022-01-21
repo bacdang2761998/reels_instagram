@@ -1,9 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:reels_instagram/screen/bottom_bar/bottom_bar.dart';
+import 'package:reels_instagram/screen/login/login_screnn.dart';
 
-void main() {
+Future<void> main() async {
   runApp(MyApp());
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: Colors.white,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: BottomBarScreen(),
+      home: LoginScreen(),
     );
   }
 }
