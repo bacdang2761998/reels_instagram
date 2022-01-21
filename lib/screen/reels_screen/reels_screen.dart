@@ -44,17 +44,18 @@ class _ReelsScrennState extends State<ReelsScrenn> {
               ),
               child: Center(
                   child: Stack(
+                fit: StackFit.expand,
                 children: [
                   VideoSideAcction(
                     reel: reels[index],
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                      Colors.black.withOpacity(0.3),
-                      Colors.transparent
-                    ], end: Alignment(0, -0.75), begin: Alignment(0, 0.1))),
-                  ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //       gradient: LinearGradient(colors: [
+                  //     Colors.black.withOpacity(0.3),
+                  //     Colors.black.withOpacity(0.1),
+                  //   ], end: Alignment(0, -0.75), begin: Alignment(0, 0.1))),
+                  // ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

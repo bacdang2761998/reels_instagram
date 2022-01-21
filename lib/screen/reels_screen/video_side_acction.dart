@@ -25,7 +25,11 @@ class _VideoSideAcctionState extends State<VideoSideAcction> {
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
       autoPlay: true,
-      showControls: false,
+      looping: true,
+      showControls: true,
+      showOptions: false,
+      showControlsOnInitialize: false,
+      allowFullScreen: false,
     );
     setState(() {});
   }
@@ -40,27 +44,27 @@ class _VideoSideAcctionState extends State<VideoSideAcction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: _chewieController != null &&
-              _chewieController!.videoPlayerController.value.isInitialized
-          ? Chewie(controller: _chewieController!,)
-          : Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircularProgressIndicator(),
-                SizedBox(
-                  height: 10,
+        backgroundColor: Colors.black.withOpacity(0.2),
+        body: _chewieController != null &&
+                _chewieController!.videoPlayerController.value.isInitialized
+            ? Chewie(
+                controller: _chewieController!,
+              )
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text("Loading",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 24,
+                        )),
+                  ],
                 ),
-                Text("Loading",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 24,
-                    )),
-              ],
-            ),
-          ),)
-      
-    );
+              ));
   }
 }
