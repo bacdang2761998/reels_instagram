@@ -1,11 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:reels_instagram/data/data.dart';
 import 'package:reels_instagram/model/reel.dart';
 
 class ReelSideAcctionBar extends StatelessWidget {
-  const ReelSideAcctionBar({Key? key, required this.reel}) : super(key: key);
+  ReelSideAcctionBar({Key? key, required this.reel}) : super(key: key);
   final double _iconSize = 28;
   final Reel reel;
+  final user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,8 +63,7 @@ class ReelSideAcctionBar extends StatelessWidget {
               border: Border.all(color: Colors.white, width: 2),
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(currenUser.profileImageUrl))),
+                  fit: BoxFit.cover, image: NetworkImage(user!.photoURL!))),
         ),
         SizedBox(
           height: 10,

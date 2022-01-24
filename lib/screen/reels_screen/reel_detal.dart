@@ -1,11 +1,12 @@
 import 'package:expandable_text/expandable_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
-import 'package:reels_instagram/data/data.dart';
 import 'package:reels_instagram/model/reel.dart';
 
 class ReelDetail extends StatelessWidget {
-  const ReelDetail({Key? key, required this.reel}) : super(key: key);
+  ReelDetail({Key? key, required this.reel}) : super(key: key);
+  final user = FirebaseAuth.instance.currentUser;
 
   final Reel reel;
   @override
@@ -17,13 +18,19 @@ class ReelDetail extends StatelessWidget {
           dense: true,
           minLeadingWidth: 0,
           horizontalTitleGap: 12,
-          title: Text(
-            'Follow',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+          title: Row(
+            children: [
+              Text(user!.displayName!),
+              Text(
+                ' - Follow',
+                style:
+                    TextStyle(color: Colors.blue, fontWeight: FontWeight.w500),
+              ),
+            ],
           ),
           leading: CircleAvatar(
             radius: 14,
-            backgroundImage: NetworkImage(currenUser.profileImageUrl),
+            backgroundImage: NetworkImage(user!.photoURL!),
           ),
         ),
         Padding(

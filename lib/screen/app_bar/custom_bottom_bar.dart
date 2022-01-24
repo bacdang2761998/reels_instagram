@@ -1,13 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:reels_instagram/data/data.dart';
 
 class CustomBottomBar extends StatelessWidget {
-  const CustomBottomBar(
+  CustomBottomBar(
       {Key? key, required this.selectPageIndex, required this.onIconTap})
       : super(key: key);
   final int selectPageIndex;
   final double _iconSize = 15;
   final Function onIconTap;
+  final user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -54,7 +56,7 @@ class CustomBottomBar extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: _iconSize,
-                backgroundImage: NetworkImage(currenUser.profileImageUrl),
+                backgroundImage: NetworkImage(user!.photoURL!),
               ),
             )
           ],
