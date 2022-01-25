@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reels_instagram/model/reel.dart';
-import 'package:reels_instagram/screen/login/google_sign_state.dart';
+import 'package:reels_instagram/screen/login/sign_in_state.dart';
 
 class ReelSideAcctionBar extends StatelessWidget {
   ReelSideAcctionBar({Key? key, required this.reel}) : super(key: key);
@@ -9,7 +9,7 @@ class ReelSideAcctionBar extends StatelessWidget {
   final Reel reel;
   @override
   Widget build(BuildContext context) {
-    final value = context.watch<GoogleSignState>();
+    final value = context.watch<SignInState>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -64,8 +64,7 @@ class ReelSideAcctionBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image:
-                      NetworkImage(value.googleSignInAccount!.photoUrl ?? ''))),
+                  image: NetworkImage(value.userDetail!.photoUrl ?? ''))),
         ),
         SizedBox(
           height: 10,

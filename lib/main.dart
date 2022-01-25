@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
-import 'package:reels_instagram/screen/login/google_sign_state.dart';
-import 'package:reels_instagram/screen/login/google_sign_state_notifier.dart';
+import 'package:reels_instagram/screen/login/sign_in_state.dart';
+import 'package:reels_instagram/screen/login/sign_in_state_notifier.dart';
 import 'package:reels_instagram/screen/login/login_screnn.dart';
 
 Future<void> main() async {
@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MultiProvider(
       providers: [
-        StateNotifierProvider<GoogleSignStateNotifier, GoogleSignState>(
-            create: (_) => GoogleSignStateNotifier())
+        StateNotifierProvider<SignInStateNotifier, SignInState>(
+            create: (_) => SignInStateNotifier())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

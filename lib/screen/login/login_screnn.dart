@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:reels_instagram/screen/app_bar/bottom_bar.dart';
-import 'google_sign_state_notifier.dart';
+import 'sign_in_state_notifier.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -34,14 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
             iconData: FontAwesomeIcons.google,
             iconColor: Color(0xFFf44336),
             onTap: () {
-              context.read<GoogleSignStateNotifier>().signIn();
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => BottomBarScreen()));
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(
-                'Login Succesfull',
-                style: TextStyle(color: Colors.green),
-              )));
+              _signInWithGoogle();
             },
           ),
           _customButton(
@@ -80,5 +73,25 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> _signInWithFacebook() async {}
+  Future<void> _signInWithGoogle() async {
+    await context.read<SignInStateNotifier>().signInWithGoogle();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+      'Login Succesfull',
+      style: TextStyle(color: Colors.green),
+    )));
+    await Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => BottomBarScreen()));
+  }
+
+  Future<void> _signInWithFacebook() async {
+    await context.read<SignInStateNotifier>().signInWithFacebook();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+      'Login Succesfull',
+      style: TextStyle(color: Colors.green),
+    )));
+    await Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => BottomBarScreen()));
+  }
 }

@@ -23,19 +23,27 @@ class _VideoSideAcctionState extends State<VideoSideAcction> {
     _videoPlayerController = VideoPlayerController.asset(widget.reel.videoUrl);
     await Future.wait([_videoPlayerController.initialize()]);
     _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController,
-      autoPlay: true,
-      looping: true,
-      showControls: true,
-      showControlsOnInitialize: false,
-      allowFullScreen: false,
-    );
+        videoPlayerController: _videoPlayerController,
+        autoPlay: true,
+        looping: true,
+        showControls: true,
+        showControlsOnInitialize: true,
+        allowFullScreen: false,
+        materialProgressColors: ChewieProgressColors(
+          backgroundColor: Colors.black,
+          bufferedColor: Colors.white,
+        ),
+        cupertinoProgressColors: ChewieProgressColors(
+            playedColor: Colors.yellow,
+            bufferedColor: Colors.blue,
+            backgroundColor: Colors.red));
     setState(() {});
   }
 
   @override
   void dispose() {
     super.dispose();
+
     _videoPlayerController.dispose();
     _chewieController!.dispose();
   }

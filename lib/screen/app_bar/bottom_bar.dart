@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reels_instagram/screen/login/google_sign_state.dart';
+import 'package:reels_instagram/screen/login/sign_in_state.dart';
 import 'package:reels_instagram/screen/pages/explore_screen.dart';
 import 'package:reels_instagram/screen/pages/home_screen.dart';
 import 'package:reels_instagram/screen/pages/profile_screen.dart';
@@ -25,7 +25,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   int _selectedPageIndex = 0;
   @override
   Widget build(BuildContext context) {
-    final value = context.watch<GoogleSignState>();
+    final value = context.watch<SignInState>();
     return Scaffold(
       body: Center(
         child: BottomBarScreen._appPages[_selectedPageIndex],
@@ -74,8 +74,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               child: CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: _iconSize,
-                backgroundImage:
-                    NetworkImage(value.googleSignInAccount!.photoUrl ?? ''),
+                backgroundImage: NetworkImage(value.userDetail!.photoUrl ?? ''),
               ),
             )
           ],

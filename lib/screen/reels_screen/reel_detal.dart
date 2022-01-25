@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 import 'package:provider/provider.dart';
 import 'package:reels_instagram/model/reel.dart';
-import 'package:reels_instagram/screen/login/google_sign_state.dart';
+import 'package:reels_instagram/screen/login/sign_in_state.dart';
 
 class ReelDetail extends StatelessWidget {
   ReelDetail({Key? key, required this.reel}) : super(key: key);
@@ -11,7 +11,7 @@ class ReelDetail extends StatelessWidget {
   final Reel reel;
   @override
   Widget build(BuildContext context) {
-    final value = context.watch<GoogleSignState>();
+    final value = context.watch<SignInState>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,7 +21,7 @@ class ReelDetail extends StatelessWidget {
           horizontalTitleGap: 12,
           title: Row(
             children: [
-              Text(value.googleSignInAccount!.displayName ?? ''),
+              Text(value.userDetail!.displayName ?? ''),
               Text(
                 ' - Follow',
                 style:
@@ -31,8 +31,7 @@ class ReelDetail extends StatelessWidget {
           ),
           leading: CircleAvatar(
             radius: 14,
-            backgroundImage:
-                NetworkImage(value.googleSignInAccount!.photoUrl ?? ''),
+            backgroundImage: NetworkImage(value.userDetail!.photoUrl ?? ''),
           ),
         ),
         Padding(
