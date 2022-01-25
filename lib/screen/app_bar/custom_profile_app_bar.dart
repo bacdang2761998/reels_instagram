@@ -1,14 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:reels_instagram/screen/login/google_signin_api.dart';
+import 'package:provider/provider.dart';
+import 'package:reels_instagram/screen/login/google_sign_state.dart';
+import 'package:reels_instagram/screen/login/google_sign_state_notifier.dart';
 import 'package:reels_instagram/screen/login/login_screnn.dart';
 
 class CustomProfileAppBar extends StatelessWidget {
   CustomProfileAppBar({Key? key}) : super(key: key);
-  final user = FirebaseAuth.instance.currentUser;
   final double _iconSize = 28;
   @override
   Widget build(BuildContext context) {
+    final value = context.watch<GoogleSignState>();
     return SliverAppBar(
       pinned: true,
       centerTitle: false,
@@ -17,7 +18,7 @@ class CustomProfileAppBar extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              user!.displayName!,
+              value.googleSignInAccount!.displayName ?? '',
               maxLines: 1,
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
@@ -34,6 +35,7 @@ class CustomProfileAppBar extends StatelessWidget {
 
   Future<void> showBottomSheet(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final value = Provider.of<GoogleSignState>(context, listen: false);
     return showModalBottomSheet(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
@@ -54,9 +56,10 @@ class CustomProfileAppBar extends StatelessWidget {
                     leading: CircleAvatar(
                       backgroundColor: Colors.black,
                       radius: _iconSize,
-                      backgroundImage: NetworkImage(user!.photoURL!),
+                      backgroundImage: NetworkImage(
+                          value.googleSignInAccount!.photoUrl ?? ''),
                     ),
-                    title: Text(user!.displayName!),
+                    title: Text(value.googleSignInAccount!.displayName ?? ''),
                     trailing: Icon(
                       Icons.adjust_outlined,
                       color: Colors.blue,
@@ -67,7 +70,7 @@ class CustomProfileAppBar extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: ListTile(
                     onTap: () {
-                      GoogleSignInApi.logout();
+                      context.read<GoogleSignStateNotifier>().logout();
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (_) => LoginScreen()),
                           (route) => false);

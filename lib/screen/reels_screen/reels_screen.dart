@@ -5,7 +5,7 @@ import 'package:reels_instagram/screen/reels_screen/reels_side_acction_bar.dart'
 import 'package:reels_instagram/screen/reels_screen/video_side_acction.dart';
 
 class ReelsScrenn extends StatefulWidget {
-  const ReelsScrenn({Key? key}) : super(key: key);
+  ReelsScrenn({Key? key}) : super(key: key);
 
   @override
   _ReelsScrennState createState() => _ReelsScrennState();

@@ -1,6 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:provider/provider.dart';
+import 'package:reels_instagram/screen/login/google_sign_state.dart';
+import 'package:reels_instagram/screen/login/google_sign_state_notifier.dart';
 import 'package:reels_instagram/screen/login/login_screnn.dart';
 
 Future<void> main() async {
@@ -12,13 +16,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primaryColor: Colors.white,
-          visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: LoginScreen(),
+    return MultiProvider(
+      providers: [
+        StateNotifierProvider<GoogleSignStateNotifier, GoogleSignState>(
+            create: (_) => GoogleSignStateNotifier())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+            primaryColor: Colors.white,
+            visualDensity: VisualDensity.adaptivePlatformDensity),
+        home: LoginScreen(),
+      ),
     );
   }
 }

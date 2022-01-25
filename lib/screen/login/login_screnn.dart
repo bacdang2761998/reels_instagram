@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:reels_instagram/screen/app_bar/bottom_bar.dart';
-
-import 'google_signin_api.dart';
+import 'google_sign_state_notifier.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -29,52 +29,56 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 100,
           ),
-          ElevatedButton.icon(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              ),
-              onPressed: () {
-                signIn();
-              },
-              icon: FaIcon(
-                FontAwesomeIcons.google,
-                color: Colors.red,
-              ),
-              label: Text(
-                'Login with Google',
-                style: TextStyle(color: Colors.blue),
-              )),
-          ElevatedButton.icon(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-            ),
-            onPressed: () {},
-            icon: FaIcon(
-              FontAwesomeIcons.facebook,
-              color: Colors.blue,
-            ),
-            label: Text(
-              'Login with Facebook',
-              style: TextStyle(color: Colors.blue),
-            ),
+          _customButton(
+            label: 'Login with Google',
+            iconData: FontAwesomeIcons.google,
+            iconColor: Color(0xFFf44336),
+            onTap: () {
+              context.read<GoogleSignStateNotifier>().signIn();
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => BottomBarScreen()));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                'Login Succesfull',
+                style: TextStyle(color: Colors.green),
+              )));
+            },
           ),
+          _customButton(
+            label: 'Login with Facebook',
+            iconColor: Color(0xFF2986cc),
+            iconData: FontAwesomeIcons.facebook,
+            onTap: () {
+              _signInWithFacebook();
+            },
+          )
         ],
       ),
     ));
   }
 
-  Future signIn() async {
-    final user = await GoogleSignInApi.login();
-    if (user == null) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Sign in Fail')));
-    } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Login Succesfull')));
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => BottomBarScreen(
-                user: user,
-              )));
-    }
+  Widget _customButton(
+      {Color backgoundColor = Colors.white,
+      required String label,
+      Color labelColor = Colors.blue,
+      required Color iconColor,
+      required IconData iconData,
+      required Function() onTap}) {
+    return ElevatedButton.icon(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(backgoundColor),
+      ),
+      onPressed: onTap,
+      icon: FaIcon(
+        iconData,
+        color: iconColor,
+      ),
+      label: Text(
+        label,
+        style: TextStyle(color: labelColor),
+      ),
+    );
   }
+
+  Future<void> _signInWithFacebook() async {}
 }

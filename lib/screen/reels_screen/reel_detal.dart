@@ -1,16 +1,17 @@
 import 'package:expandable_text/expandable_text.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
+import 'package:provider/provider.dart';
 import 'package:reels_instagram/model/reel.dart';
+import 'package:reels_instagram/screen/login/google_sign_state.dart';
 
 class ReelDetail extends StatelessWidget {
   ReelDetail({Key? key, required this.reel}) : super(key: key);
-  final user = FirebaseAuth.instance.currentUser;
 
   final Reel reel;
   @override
   Widget build(BuildContext context) {
+    final value = context.watch<GoogleSignState>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -20,7 +21,7 @@ class ReelDetail extends StatelessWidget {
           horizontalTitleGap: 12,
           title: Row(
             children: [
-              Text(user!.displayName!),
+              Text(value.googleSignInAccount!.displayName ?? ''),
               Text(
                 ' - Follow',
                 style:
@@ -30,7 +31,8 @@ class ReelDetail extends StatelessWidget {
           ),
           leading: CircleAvatar(
             radius: 14,
-            backgroundImage: NetworkImage(user!.photoURL!),
+            backgroundImage:
+                NetworkImage(value.googleSignInAccount!.photoUrl ?? ''),
           ),
         ),
         Padding(

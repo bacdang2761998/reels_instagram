@@ -27,7 +27,6 @@ class _VideoSideAcctionState extends State<VideoSideAcction> {
       autoPlay: true,
       looping: true,
       showControls: true,
-      showOptions: false,
       showControlsOnInitialize: false,
       allowFullScreen: false,
     );
