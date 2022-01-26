@@ -21,7 +21,7 @@ class ReelDetail extends StatelessWidget {
           horizontalTitleGap: 12,
           title: Row(
             children: [
-              Text(value.userDetail!.displayName ?? ''),
+              Text(value.userDetail?.displayName ?? ''),
               Text(
                 ' - Follow',
                 style:
@@ -31,7 +31,7 @@ class ReelDetail extends StatelessWidget {
           ),
           leading: CircleAvatar(
             radius: 14,
-            backgroundImage: NetworkImage(value.userDetail!.photoUrl ?? ''),
+            backgroundImage: NetworkImage(value.userDetail?.photoUrl ?? ''),
           ),
         ),
         Padding(

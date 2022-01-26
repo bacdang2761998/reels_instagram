@@ -74,7 +74,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               child: CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: _iconSize,
-                backgroundImage: NetworkImage(value.userDetail!.photoUrl ?? ''),
+                backgroundImage: NetworkImage(value.userDetail?.photoUrl ?? ''),
               ),
             )
           ],

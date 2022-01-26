@@ -18,7 +18,7 @@ class CustomProfileAppBar extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              value.userDetail!.displayName ?? '',
+              value.userDetail?.displayName ?? '',
               maxLines: 1,
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
@@ -57,9 +57,9 @@ class CustomProfileAppBar extends StatelessWidget {
                       backgroundColor: Colors.black,
                       radius: _iconSize,
                       backgroundImage:
-                          NetworkImage(value.userDetail!.photoUrl ?? ''),
+                          NetworkImage(value.userDetail?.photoUrl ?? ''),
                     ),
-                    title: Text(value.userDetail!.displayName ?? ''),
+                    title: Text(value.userDetail?.displayName ?? ''),
                     trailing: Icon(
                       Icons.adjust_outlined,
                       color: Colors.blue,
@@ -70,7 +70,7 @@ class CustomProfileAppBar extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: ListTile(
                     onTap: () {
-                      _logOutGoogle(context);
+                      _logOut(context);
                     },
                     leading: CircleAvatar(
                       foregroundColor: Colors.grey,
@@ -89,9 +89,8 @@ class CustomProfileAppBar extends StatelessWidget {
             )));
   }
 
-  Future<void> _logOutGoogle(BuildContext context) async {
-    context.read<SignInStateNotifier>().logOutWithGoogle();
-    context.read<SignInStateNotifier>().logoutWithFacebook();
+  Future<void> _logOut(BuildContext context) async {
+    context.read<SignInStateNotifier>().logOut();
     await Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => LoginScreen()), (route) => false);
   }

@@ -64,7 +64,7 @@ class ReelSideAcctionBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(value.userDetail!.photoUrl ?? ''))),
+                  image: NetworkImage(value.userDetail?.photoUrl ?? ''))),
         ),
         SizedBox(
           height: 10,

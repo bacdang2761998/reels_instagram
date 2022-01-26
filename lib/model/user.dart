@@ -9,9 +9,9 @@ class UserDetail {
   });
 
   UserDetail.fromJson(Map<String, dynamic> json) {
-    displayName = json["displayName"];
-    photoUrl = json["photoUrl"];
-    email = json["email"];
+    this.displayName = json['displayName'];
+    this.photoUrl = json['photoUrl'];
+    this.email = json['email'];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();

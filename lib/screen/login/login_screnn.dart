@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _signInWithFacebook() async {
-    await context.read<SignInStateNotifier>().signInWithFacebook();
+    context.read<SignInStateNotifier>().signInWithFacebook();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
       'Login Succesfull',

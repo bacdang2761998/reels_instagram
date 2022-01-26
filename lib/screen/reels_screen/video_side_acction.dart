@@ -45,7 +45,7 @@ class _VideoSideAcctionState extends State<VideoSideAcction> {
     super.dispose();
 
     _videoPlayerController.dispose();
-    _chewieController!.dispose();
+    _chewieController?.dispose();
   }
 
   @override
