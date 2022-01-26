@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:reels_instagram/data/data.dart';
 import 'package:reels_instagram/screen/reels_screen/reel_detal.dart';
 import 'package:reels_instagram/screen/reels_screen/reels_side_acction_bar.dart';
+import 'package:reels_instagram/screen/reels_screen/video_side_acction.dart';
 
 class ReelsScrenn extends StatefulWidget {
-  const ReelsScrenn({Key? key}) : super(key: key);
+  ReelsScrenn({Key? key}) : super(key: key);
 
   @override
   _ReelsScrennState createState() => _ReelsScrennState();
@@ -39,20 +40,22 @@ class _ReelsScrennState extends State<ReelsScrenn> {
           itemBuilder: (context, index) {
             return Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(reels[index].imageUrl))),
+                border: Border.all(color: Colors.black),
+              ),
               child: Center(
                   child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                      Colors.black.withOpacity(0.3),
-                      Colors.transparent
-                    ], end: Alignment(0, -0.75), begin: Alignment(0, 0.1))),
+                  VideoSideAcction(
+                    reel: reels[index],
                   ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //       gradient: LinearGradient(colors: [
+                  //     Colors.black.withOpacity(0.3),
+                  //     Colors.black.withOpacity(0.1),
+                  //   ], end: Alignment(0, -0.75), begin: Alignment(0, 0.1))),
+                  // ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:reels_instagram/data/data.dart';
+import 'package:provider/provider.dart';
 import 'package:reels_instagram/model/reel.dart';
+import 'package:reels_instagram/screen/login/sign_in_state.dart';
 
 class ReelSideAcctionBar extends StatelessWidget {
-  const ReelSideAcctionBar({Key? key, required this.reel}) : super(key: key);
+  ReelSideAcctionBar({Key? key, required this.reel}) : super(key: key);
   final double _iconSize = 28;
   final Reel reel;
   @override
   Widget build(BuildContext context) {
+    final value = context.watch<SignInState>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -62,7 +64,7 @@ class ReelSideAcctionBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(currenUser.profileImageUrl))),
+                  image: NetworkImage(value.userDetail?.photoUrl ?? ''))),
         ),
         SizedBox(
           height: 10,
